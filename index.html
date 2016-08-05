@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>动态变换运行时上下文</title>
+		<script type="text/javascript">
+			function Person() {
+				//属性
+				this._name = "";
+				this._age = 0; //方法
+				this._speeking = function() {
+					console.log("Hello,I'm " + this._name + "," + this._age + " years old!");
+				};
+			}
+
+			function Student(name, age, gradle) {
+				//实现上下问替换
+				//此时当前下上下文中的this绑定在Student中(前提是不能执行一些绑定丢失的操作),
+				//Function.call(obj,arg);
+				//obj这个对象将替换Function的上下文this对象
+				//this上下文的绑定有很多限制条件
+				Person.call(this, arguments);
+
+				this._speeking = function() {
+					console.log("方法的重写");
+				};
+			}
+
+			var zhangsan = new Student("zhangsan", "18", "一年级");
+			zhangsan._speeking();
+
+			console.log("/////////////////////////分割线/////////////////////////")
+				//this的4中绑定规则
+				//1、默认绑定：默认绑定就是this绑定到window对象上(非严格模式下)
+			this.aaa = "默认绑定就是this绑定到window对象上(非严格模式下)";
+			console.log(window.aaa);
+
+			//函数在独立运行时,独立函数并且在独立调用时
+			function foo1() {
+				//默认在次函数不是独立调用时this代表的是此函数的上下文
+				//那么换句话说如果如果函数在某些特定情况下会影响函数的绑定模式
+				//那么此处的独立函数在被独立调用时，this的上文就不是值的当前的函数上下文，而是默认绑定表示的window
+				this.aaaa = "独立函数在独立调用时，this是默认绑定";
+			}
+			foo1();
+			console.log(window.aaaa);
+
+			function foo() {
+				function inner() {
+					this.aaaaa = "此函数的一个嵌套函数，在此函数中使用this，this代指inner函数上下文，" +
+						"但是如果在次函数的外部独立调用了次函数，那么次函数的绑定就会发生变化";
+				}
+				inner();
+			}
+			foo(); //运行
+			console.log(window.aaaaa);
+
+			//2、隐式绑定：
+			//3、显式绑定
+			//4、NEW绑定
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>
