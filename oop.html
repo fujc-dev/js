@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OOP</title>
+
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript" src="js/Guid.js"></script>
+<script type="text/javascript">
+    'use strict';  //在严格模式下运行，
+    // 建议在处理模块化程序时使用严格模式，
+    // 那么在this的绑定对象在出现默认绑定和绑定丢失时，会出现错误提示
+    /*
+     * JS OOP
+     *  什么是面向对象：将真实世界复杂的关系分解以及抽象成抽象，由对象的合作与分工完成真实世界的模拟；
+     *
+     * */
+    /**
+     * Vehicle是一个构造函数，this代表了Vehicle的属性，要生成对象就需要使用new关键字初始化
+     * @constructor
+     */
+    var Vehicle = function () {
+        this.price = 1000.00;
+        console.log(this.price);
+    }
+    var vehicle = new Vehicle();
+    var vehicle = new Vehicle;  //这两种初始化方式都是一样的
+    console.log(vehicle["price"] + "-" + vehicle.price);  //这两种方式都是一个意思
+
+
+    /**
+     *  创建一个GFubar对象(可以不使用NEW关键字去初始化对象实例)
+     * @param foo 参数1
+     * @param bar 参数2
+     * @returns {GFubar} 在不使用NEW关键字时也返回一个GFubar对象
+     * @constructor
+     */
+    function GFubar(foo, bar) {
+        if (!(this instanceof GFubar)) {  //可以不使用NEW关键字去初始化对象实例
+            return new GFubar(foo, bar);
+        }
+        this._foo = foo;
+        this._bar = bar;
+        console.log("可以不使用NEW关键字去初始化对象实例");
+    }
+
+    var gFubar = GFubar(1000, 2000);
+    console.log(gFubar._foo + "-" + gFubar._bar);
+
+    function getMessage() {
+        return 'this is a message'; //{ "Result":"this is a message"}
+    }
+    //当函数的构造函数中包含return语句时，并且使用new关键字创建对象，
+    // 如果返回的结果不是一个对象，那么就会自动忽略这个return关键字
+    var msg = new getMessage();
+    console.log(msg); //打印的msg为一个空对象
+
+    console.log("*****************************************************分割线*****************************************************");
+
+    //getOwnPropertyNames 成员是对象自身属性不是继承属性
+    console.log(Object.getOwnPropertyNames(Object));
+    //["length", "name", "arguments", "caller", "prototype", "now", "parse", "UTC"]
+    //从打印的结果可以看出并没有getIndenty方法
+    Object.prototype.Indentity = 10000;
+    console.log(Object.keys(Object));
+    //console.log(Object.Indentity);
+    console.log("getIndenty是否是自身属性：" + Object.hasOwnProperty("getIndenty"));
+    console.log("NewGuid是否是自身属性："+Object.hasOwnProperty("Indentity"));
+
+    (function aa(){ console.log("分组操作符"); });
+    console.log(Math.random() *10);
+    var num = Math.random()*700 + 800;
+    num = parseInt(num, 10);
+    console.log(num);
+    var n = 0,m =59;
+
+    var c = m-n+1;
+     console.log(Math.floor(Math.random() * c + n));
+
+</script>
