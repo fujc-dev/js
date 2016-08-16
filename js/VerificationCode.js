@@ -77,10 +77,10 @@
         this.dom = dom;
 
         this.initOptions(options);  //初始化默认属性
-        this.init();                            //
-        this.addEvent();                  //
-        this.update();                      //
-        this.mask();                         //
+        this.init();                            //初始化验证码控件属性
+        this.addEvent();                  //添加更新验证码事件
+        this.update();                      //更新验证码
+        this.mask();                         //设置遮罩层
     };
 
     vCode.prototype.init = function () {
@@ -128,7 +128,7 @@
         var default_options = function () {
             this.len = 4;      //字符串长度4
             this.fontSizeMin = 20;   //显示最大的字体大小
-            this.fontSizeMax = 48;  //显示最小的字体大小
+            this.fontSizeMax = 38;  //显示最小的字体大小
             //用于显示字符的颜色集合
             this.colors = [
                 "green",
@@ -222,18 +222,18 @@
      */
     vCode.prototype.drawCode = function (code, index) {
         var dom = document.createElement("span");
-
         dom.style.cssText = [
             "font-size:" + randint(this.options.fontSizeMin, this.options.fontSizeMax) + "px",
             "color:" + this.options.colors[randint(0, this.options.colors.length - 1)],
             "position: absolute",
             "left:" + randint(this.uW * index, this.uW * index + this.uW - 10) + "px",
             "top:" + randint(0, this.h - 30) + "px",
-            "transform:rotate(" + randint(-30, 30) + "deg)",
-            "-ms-transform:rotate(" + randint(-30, 30) + "deg)",
-            "-moz-transform:rotate(" + randint(-30, 30) + "deg)",
-            "-webkit-transform:rotate(" + randint(-30, 30) + "deg)",
-            "-o-transform:rotate(" + randint(-30, 30) + "deg)",
+            //设置SPAN元素的旋转
+            //"transform:rotate(" + randint(-30, 30) + "deg)",
+            //"-ms-transform:rotate(" + randint(-30, 30) + "deg)",                     /* IE 9 */
+            //"-moz-transform:rotate(" + randint(-30, 30) + "deg)",                  /* Firefox */
+            //"-webkit-transform:rotate(" + randint(-30, 30) + "deg)",              /* Safari 和 Chrome */
+            //"-o-transform:rotate(" + randint(-30, 30) + "deg)",                       /* Opera */
             "font-family:" + this.options.fonts[randint(0, this.options.fonts.length - 1)],  //取随机字体
             "font-weight:" + randint(400, 900)   //
         ].join(";");
@@ -251,25 +251,25 @@
         this.lineDoms = [];
         for (var i = 0; i < this.options.lines; i++) {
             var dom = document.createElement("div");
-
             dom.style.cssText = [
                 "position: absolute",
-                "opacity: " + randint(3, 8) / 10,
+                "opacity: " + randint(3, 8) / 10,   //取随机透明度
                 "width:" + randint(this.options.lineWidthMin, this.options.lineWidthMax) + "px",
                 "height:" + randint(this.options.lineHeightMin, this.options.lineHeightMax) + "px",
                 "background: " + this.options.lineColors[randint(0, this.options.lineColors.length - 1)],
                 "left:" + randint(0, this.w - 20) + "px",
                 "top:" + randint(0, this.h) + "px",
+                //设置DIV元素的旋转
                 "transform:rotate(" + randint(-30, 30) + "deg)",
-                "-ms-transform:rotate(" + randint(-30, 30) + "deg)",
-                "-moz-transform:rotate(" + randint(-30, 30) + "deg)",
-                "-webkit-transform:rotate(" + randint(-30, 30) + "deg)",
-                "-o-transform:rotate(" + randint(-30, 30) + "deg)",
+                "-ms-transform:rotate(" + randint(-30, 30) + "deg)",              /* IE 9 */
+                "-moz-transform:rotate(" + randint(-30, 30) + "deg)",            /* Firefox */
+                "-webkit-transform:rotate(" + randint(-30, 30) + "deg)",        /* Safari 和 Chrome */
+                "-o-transform:rotate(" + randint(-30, 30) + "deg)",                 /* Opera */
+
                 "font-family:" + this.options.fonts[randint(0, this.options.fonts.length - 1)],
                 "font-weight:" + randint(400, 900)
             ].join(";");
             this.dom.appendChild(dom);
-
             this.lineDoms.push(dom);
         }
     };
