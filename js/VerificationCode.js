@@ -274,7 +274,8 @@
         }
     };
 
+    //将vCode绑定到window对象(此处的this属于默认绑定，那么vCode说白了就是window对象的属性)
     this.vCode = vCode;
 
-}).call(this);
+}).call(this);  //其实call(this)的另一种写法就是(window) 但是由于此处可以参数所以就用了切换上下文的写法
 
