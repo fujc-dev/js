@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    /**
+     * 构造函数模式
+     *
+     */
+    function Person(name, age, job) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+
+        this.getPerson = function () {
+            console.log("" + this.name + "" + this.age + "" + this.job + "");
+        }
+    }
+
+
+    var person1 = new Person("Nicholas", 29, "Software Engineer");
+    var person2 = new Person("Greg", 27, "Doctor");
+
+    console.log(person1.constructor == Person); //true
+    console.log(person2.constructor == Person); //true
+
+    /**
+     *  书上的解释是：在创建两个Person时，新的实例内部都会创建一个getPerson以及内部属性，给出的解释是确实没必要，确实有一定道理，
+     *  那么怎么样才能达到内存最优化，确实是一个难题，prototype将为我们解决这个难题，003页面将详细理解prototype属性；
+     */
+
+
+</script>

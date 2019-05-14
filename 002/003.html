@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function Person() {
+
+    }
+    //以原型模式为对象添加属性和方法
+    Person.prototype.name = "Nicholas"; //
+    Person.prototype.age = 18;
+    Person.prototype.job = "Software Engineer";
+    Person.prototype.sayName = function () {
+        console.log(this.name);
+    }
+    //原型中属性共享与值类型、引用类型
+    Person.prototype.data = ["JavaScript高级编程", "Java语言精辟"];
+
+    Person.prototype.addData = function (newItem) {
+        this.data.push(newItem);
+        //Person.prototype.name = newName;
+    }
+    Person.prototype.updateName = function (newName) {
+        this.name = newName;
+        //Person.prototype.name = newName;
+    }
+    var person1 = new Person();
+    person1.sayName(); //"Nicholas"
+    var person2 = new Person();
+    person2.sayName(); //"Nicholas"
+    console.log(person1.sayName == person2.sayName); //true
+    //从结果以及监视分析来看，不管我们新建多少个Person的实例，都会包含name、age、iob以及sayName方法
+    //这些新的实例是共享原型属性中的实例和方法；
+    //共享：这些属性在这个实例存续时，都访问的是同样的属性以及方法，并且结果是全局改变的；
+    //console.log(Object.getPrototypeOf(person1).name); //"Nicholas" //获取原型对象中name的值
+    //在JavaScript中，number、string、boolean、null和undefined型数据都是值类型。
+    person1.updateName("Boobao");  //这个更改的不是原型属性中name的值
+    person1.addData("Javascript设计模式");
+    console.log(person1.data);
+    console.log(person2.data);
+
+    person1.sayName(); //"Boobao"
+    person2.sayName(); //"Nicholas"
+
+    //值类型(包括string类型，js中将string视作值类型，但是处理时又是按照引用类型处理的)
+    //从结果看，一处改变，处处收益(值类型除外)；
+
+
+    /**
+     * 设备对象
+     * @param name 设备名称
+     * @param code 设备编号
+     * @returns {Object} 返回一个安全的对象，不需要使用this访问，那么这个Device不会受到其他篡改
+     * @constructor
+     */
+    function Device(name, code) {
+        var _o = new Object();
+        _o.name = name;
+        _o.code = code;
+        return _o;
+    }
+    //这种操作只能在内部做处理，this无法访问到里面的任何属性；
+</script>

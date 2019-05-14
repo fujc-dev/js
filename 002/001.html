@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    //创建类实例
+    function CreateClassInstance(option) {
+        var _o = new Object();
+        for (var key in option) {
+            _o[key] = option[key];
+        }
+        return _o;
+    }
+
+    //创建多个相似类型
+    var _o1 = this.CreateClassInstance({name: "zhangsan", age: 18});
+    var _o2 = this.CreateClassInstance({name: "fjc", age: 17, "method": method});
+    _o2["method"]();
+
+    function method() {
+        console.log("asd");
+    }
+
+    /*
+    *  一般这种情况是对某一个功能点的封装，根据传递的参数，执行并返回指定的业务结果
+    *  说是工厂模式，创建类实例，但是可以衍生很多变种处理各种复杂业务逻辑，
+    *  书上讲的是针对创建对象的工厂，讲述了创建类时，工厂模式其实意义不大，但是在实际业务中，涉及到的工厂，
+    *   所做的事情还是非常多的。
+    * */
+</script>

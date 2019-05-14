@@ -74,6 +74,7 @@
             function inner() {
                 this.aaaaa = "此函数的一个嵌套函数，在此函数中使用this，this代指inner函数上下文，" +
                         "但是如果在次函数的外部独立调用了次函数，那么次函数的绑定就会发生变化";
+                console.log(this.aaaaa);
             }
 
             inner();

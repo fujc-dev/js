@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    /**
+     * prototype:原型属性，每一个构造函数都会有一个prototype属性，
+     * 参见下面例子：
+     *      1、创建一个Map函数(对象)，那么这个Map对象就包含一个prototype属性，这个属性与一个影藏的__proto__属性是一个东西，
+     *   另外Map函数(函数)继承自Object，Object对象也包含一个prototype（__proto__）,两个__proto__其实是相等的；我们称之为原型链；
+     *      2、为了更明显的提现原型链，再创建一个BaiduMap和GoogleMap，用转移作用域的方式，使BaiduMap和GoogleMap两个函数继承自Map对象；
+     *   再来观察其原型属性，从打印结果上看，他们之间好像是就是一个(其实就是一个)；
+     *      3、根据前两点，以及展示的结果，再一次论证prototype的原型链，我们给Map类添加一个中心坐标点，然后使用其子类调用，查看结果；
+     */
+
+    function Map() {
+        this.print = function () {
+            console.log("cece");
+        }
+    }
+    Map.prototype.center = {"x": 100, "y": 100};
+    Map.prototype.do = function () {
+        console.log("do...");
+    }
+
+    function BaiduMap() {
+        //Map.call(this); //BaiduMap已经继承自Map，并且已经使用this.print调用到Map类的实例
+        //使用call修改作用域的方式，步伐操作prototype
+        this.print();
+    }
+    BaiduMap.prototype = new Map();
+    function GoogleMap() {
+        //Map.call(this);
+    }
+    GoogleMap.prototype = new Map();
+    console.log("-------------")
+    console.log(Map.constructor === BaiduMap.constructor);
+    console.log(Map.constructor === GoogleMap.constructor);
+    console.log("-------------")
+    console.log("从上述两个函数的打印结果上看，已经完成了继承。")
+    console.log("-------对比GoogleMap、BaiduMap、Map3个函数的原型属性------")
+    console.log(GoogleMap.__proto__ === BaiduMap.__proto__);//true
+
+    console.log(GoogleMap.__proto__ === Map.__proto__);//true
+    console.log(BaiduMap.__proto__ === Map.__proto__);//true
+
+    console.log(GoogleMap.__proto__ === Object.__proto__);//true
+    console.log(BaiduMap.__proto__ === Object.__proto__);//true
+
+    console.log(Map.__proto__ === Object.__proto__);//true
+
+    console.log("-------------");
+    console.log("-------------");
+    console.log("-------prototype------");
+    console.log("-------------");
+    console.log("-------------");
+    var _map = new Map();
+    var _bMap = new BaiduMap();
+    var _gMap = new GoogleMap();
+    _bMap.do();
+    _gMap.do();
+    console.log("-------------");
+    console.log("Map：", _map.center);
+    console.log("BaiduMap：", _bMap.center);
+    console.log("GoogleMap：", _gMap.center);
+    console.log("-------此处将Map的prototype的值修改：Map.prototype.center = {\"asd\": \"asd\"}------");
+    Map.prototype.center = {"asd": "asd"};
+    console.log("-------------");
+    console.log("Map：", _map.center);
+    console.log("BaiduMap：", _bMap.center);
+    console.log("GoogleMap：", _gMap.center);
+
+
+</script>

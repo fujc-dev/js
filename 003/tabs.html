@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>发现周边</title>
+    <link rel="stylesheet" href="materialize.css">
+    <title>剥离materialize的Tabs组件</title>
+    <link/>
+</head>
+<body>
+<div>
+    <div>
+        <ul class="mtabs">
+            <li class="tab"><a point="#test1" >测试 1</a></li>
+            <li class="tab"><a point="#test2" class="active">测试 2</a></li>
+            <li class="tab"><a point="#test3">禁用标签</a></li>
+            <li class="tab"><a point="#test4">测试 4</a></li>
+        </ul>
+    </div>
+    <div id="test1">测试 1</div>
+    <div id="test2">测试 2</div>
+    <div id="test3">测试 3</div>
+    <div id="test4">测试 4</div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="materialize.js"></script>
+<script type="text/javascript">
+    $("ul.mtabs").tabs();
+</script>
