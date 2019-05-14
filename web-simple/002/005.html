@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        //当需要弹出一个提示框，并要求点击页面空白处时关闭这个提示框
+        document.onclick = function (e) {
+            e.preventDefault(); //取消事件默认动作
+            var isCurrent = false; //用于判断当前点击的位置是否在弹出框上，如果是不处理，如果不是就关闭弹出框
+            if (isCurrent) {
+                //关闭弹出框
+            }
+        }
+
+        /**
+         * 添加事件
+         * @param eventTarget 目标
+         * @param type 类型
+         * @param callBack 回调函数
+         */
+        function addEvent(eventTarget, type, callBack) {
+            //支持DOM2级事件的处理程序addEventListener方法的浏览器
+            if (eventTarget.addEventListener) {
+                eventTarget.addEventListener(type, callBack, false);
+            }
+            //对于不支持addEventListener方法但支持attachEvent的浏览器
+            else if (eventTarget.attachEvent) {
+                eventTarget.attachEvent("on" + type, callBack);
+            }
+            //对于不支持addEventListener方法也不支持attachEvent的浏览器，但是支持on+事件名的浏览器
+            else {
+                eventTarget["on" + type] = callBack;
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>寄生式组合继承</title>
+    <script type="text/javascript">
+
+        /**
+         * 基于原型方式的继承公共方法，使用已有的对象创建一个新对象，
+         * @param o
+         * @returns {F}
+         */
+        function inheritObject(o) {
+            //空的函数，可以叫做过度函数
+            function F() {
+            }
+
+            //并由这个空函数继承父对象(o是父对象的实例，类式继承的基本语法)
+            F.prototype = o;
+            //返回这个空的过度函数实例，次函数的原型继承了父对象
+            var p = new F();
+            console.log(F.prototype == p.__proto__);
+            return p;
+        }
+        /**
+         * 寄生式继承-继承原型 - 寄生式组合继承
+         * @param subFunc
+         * @param superFunc
+         */
+        function inheritPrototype(subFunc, superFunc) {
+            //实用已有的对象创建一个新对象
+            //var p = inheritObject(superFunc.prototype);代码整合到此方法中利于代码分析
+            function _F() {};
+            _F.prototype = {"name":"ZhangSan"};
+            var _p = new _F();
+            //测试
+            console.log(_F.prototype == _p.__proto__); //此时是这样子的
+            console.log(_p.constructor == Object);
+            //类式继承中，构造函数默认值为父类
+            function F() {};
+            F.prototype = superFunc.prototype;
+            var p = new F();
+            //测试
+            console.log(F.prototype == p.__proto__); //此时是这样子的
+            console.log(p.constructor == superFunc);
+            //此时的p是函数F的实例，但是根据原型链继承的方式，
+            //F.prototype与superFunc.prototype在一个链上，所以F与superFunc是有继承关系的
+            //
+            //定义：constructor方法在默认情况下是指向类的构造函数的
+            //此时p.constructor指向的构造函数是F();
+            //修正因为重写子类原型导致子类的constructor属性被修改；
+            //此时的p.constructor表示的是superFunc；但是从上述的类式继承的分析来看，
+            //如果不将p.constructor值设置为subFunc，sub.constructor == subFunc)就不是相等的，
+            //虽然不设置并不影响函数的继承关系；但是有一点违背语法规则
+            //  var sub  = new subFunc();
+            //  console.log(sub.constructor == subFunc); //
+            //
+            p.constructor = subFunc;  //现在修改父类的构造函数属性指向子类的构造函数
+            //此处明显是类式继承
+            subFunc.prototype = p;
+
+        }
+
+        function SuperClass(name) {
+            this.name = name;
+            this.colors = ["red", "blue", "green"];
+
+        }
+
+        SuperClass.prototype.getName = function () {
+            console.log(this.name);
+        }
+
+        function SubClass(name, time) {
+            SuperClass.call(this, name);
+            this.time = time;
+        }
+
+        inheritPrototype(SubClass, SuperClass);
+
+        SubClass.prototype.getTime = function () {
+            console.log(this.time);
+        }
+        var instance1 = new SubClass("Js book", 2014);
+        instance1.colors.push("black");
+
+        var instance2 = new SubClass("Css3 bok", 2015);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple</title>
+        <script type="text/javascript">
+
+            function SuperClass() {
+                this.superName = "王健林";
+                this.books = ["1", "2", "3"]; //引用类型
+            }
+
+            SuperClass.prototype.getSuperName = function () {
+                return this.superName;
+            }
+
+            function SubClass() {
+                this.subName = "王思聪";
+            }
+            SubClass.prototype = new SuperClass(); //类式继承
+
+            SubClass.prototype.getSubName = function () {
+                return this.subName;
+            }
+
+            var subClass = new SubClass();
+
+            console.log(subClass.getSuperName());
+            console.log(subClass.getSubName());
+
+            console.info(subClass instanceof SubClass);
+            console.info(subClass instanceof SuperClass)
+
+            var instace1 = new SubClass();
+            instace1.superName = "asdad";
+            instace1.books.push("asdasd");
+            var instace2 = new SubClass();
+            console.info(instace2.books);   // ["1", "2", "3", "asdasd"] 因为数组是引用类型，
+                                            // 就会在其他子类中共用，
+                                            // 当然这种方式可以处理一些特殊业务***
+
+            //instanceof 用于判断subClass对象是否是类SuperClass的实力
+            //类是原型对象(显示原型)与类实例的__proto__
+            //类的原型对象：就是为类的原型添加共有方法以及属性，但不能直接访问这些方法以及属性
+            //类式继承：在子类的prototype属性上绑定父类的实例
+
+        </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html lang="EN">
+<!--根标签：lang规定翻译的语言-->
+<head>
+    <!--网页头部-->
+    <meta charset="UTF-8">
+    <!--规定字符编码：UTF-8国际编码-->
+    <meta name="Author" content="">
+    <!--作者-->
+    <meta name="Keywords" content="">
+    <!--关键词：给搜索引擎用的-->
+    <meta name="Description" content="">
+    <!--网站概述：给搜索引擎用的-->
+    <title>案例一：侧边滑动导航</title>
+    <!--网页标题-->
+    <style>
+        *{margin:0;padding:0;}
+        html{}
+        body{font:14px/1.5 'Microsoft Yahei';}
+        .box{width: 40px; margin: 100px 50px; background: #ffffff; }
+        .box div{height: 40px; margin: 5px 0; background: url("images/bg.png") no-repeat}
+        /*返回顶部*/
+        .box .top{background-position: 0px 0px;}
+        .box .top:hover{background-position: -40px 0px;}
+        /*客服*/
+        .box .music{background-position: -80px -280px;}  /**/
+        .box .music:hover{background-position: -120px -280px;}
+        /*快速回复*/
+        .box .quick-reply{background-position: 0px -40px;}
+        .box .quick-reply:hover{background-position: -40px -40px;}
+        /*联系我们*/
+        .box .contact-us{background-position: -80px 0;}
+        .box .contact-us:hover{background-position: -120px 0;}
+        /*QQ群*/
+        .box .qq-groups{background-position: 0 -200px;}
+        .box .qq-groups:hover{background-position: -40px -200px;}
+        /*分享*/
+        .box .share{background-position: -80px -40px;}
+        .box .share:hover{background-position: -120px -40px;}
+    </style>
+
+</head>
+<body>
+<!--网页主体-->
+<div class="box">
+    <div class="top"></div>
+    <div class="music"></div>
+    <div class="quick-reply"></div>
+    <div class="contact-us"></div>
+    <div class="qq-groups"></div>
+    <div class="share"></div>
+</div>
+</body>
+</html>

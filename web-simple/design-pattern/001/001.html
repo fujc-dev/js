@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var checkObj =function () {
+        var _o = new Object();
+        _o.checkName =function () {
+            console.log("1")
+        }
+        _o.checkEmail =function () {
+
+        }
+        _o.checkPassword =function () {
+
+        }
+        return _o;
+    }
+
+    var _o = new checkObj();
+    _o.checkName();
+    _o["checkName"]();
+
+    var _oo =  checkObj();
+    _oo.checkName();
+    _oo["checkName"]();
+
+    var _M = function () {
+
+        checkName1 = function () { //我们称之为私有函数
+
+        }
+
+        this.checkName2=function () {
+
+        }
+    }
+    var _m = new _M();
+    _m.checkName1(); //TypeError: _m.checkName1 is not a function
+    _m.checkName2();
+
+
+    //001.js中我们提到了静态函数，此处我们又提出了私有函数
+
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var Java = function (content) {
+            (function (content) {
+                var divEle = document.createElement("div");
+                divEle.innerHTML = content;
+                document.getElementById("container").appendChild(divEle);
+            })(content);
+        }
+
+        var Php = function (content) {
+            (function (content) {
+                var divEle = document.createElement("div");
+                divEle.innerHTML = content;
+                document.getElementById("container").appendChild(divEle);
+            })(content);
+        }
+
+        var Javascript = function (content) {
+            (function (content) {
+                var divEle = document.createElement("div");
+                divEle.innerHTML = content;
+                document.getElementById("container").appendChild(divEle);
+            })(content);
+        }
+
+        function JobFactory(type, content) {
+
+        }
+
+        function A() {
+            try {
+                throw  "asdasd";
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+        A();
+    </script>
+</head>
+<body>
+<div id="container">
+
+</div>
+</body>
+</html>

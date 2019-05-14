@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        p{
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+        }
+
+        .box{
+            position: relative;
+            width: 271px;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: red;
+            margin: 100px auto;
+        }
+
+        .box img{
+            width: 100%;
+            position: relative;
+        }
+
+        .meta{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 56px;
+            background: rgba(0,0,0,.6);
+            color: #fff;
+            font-weight: 400;
+            line-height: 56px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .cnt {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,.6);
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.6em;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .box:hover .meta {
+            display: none;
+        }
+
+        .box:hover .cnt {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="../img/1.jpg">
+    <div class="meta">文字文字文字</div>
+    <div class="cnt">
+        <p>文字文字文字文字</p>
+        <p>文字文字文字文字文字文</p>
+        <p>文字文字文字文字文字文</p>
+    </div>
+</div>
+</body>
+</html>

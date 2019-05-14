@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型式继承-寄生式继承</title>
+    <script type="text/javascript">
+        /**
+         * 基于原型方式的继承公共方法，使用已有的对象创建一个新对象，
+         * @param o
+         * @returns {F}
+         */
+        function inheritObject(o) {
+            //空的函数，可以叫做过度函数
+            function F() {
+            }
+
+            //并由这个空函数继承父对象(o是父对象的实例，类式继承的基本语法)
+            F.prototype = o;
+            //返回这个空的过度函数实例，此函数的原型继承了父对象
+            return new F();
+        }
+
+        var book = {
+            name: "javascript",
+            alikeBook: ["1", "2"],
+            onPrint: function (message) {
+                console.info(message);
+            }
+        };
+        //让另一个对象继承book对象
+        var nBook = inheritObject(book);
+        //此方法其实就是一个类式继承；
+        //新对象可以访问到book对象的属性和方法
+        //
+
+        /**********************************************寄生式继承**********************************************/
+
+
+        var book = {
+            name: "javascript",
+            alikeBook: ["1", "2"],
+            onPrint: function (message) {
+                console.info(message);
+            }
+        };
+
+        function createObj(obj) {
+            //通过原型方式创建新对象
+            var newObj = inheritObject(obj);
+            //为新对象扩展方法
+            newObj.getName = function () {
+                console.log(this.name)
+            }
+            //扩展后的新对象
+            return newObj;
+        }
+
+        var newBook = createObj(book);
+        //产生一个新对象，感觉这种方式不怎么实用，基本上用于装逼使用
+
+
+        /**********************************************寄生式组合继承**********************************************/
+
+
+        /**
+         * 寄生式继承-继承原型 - 寄生式组合继承
+         * @param subFunc
+         * @param superFunc
+         */
+        function inheritPrototype(subFunc, superFunc) {
+            //实用已有的对象创建一个新对象
+            var p = inheritObject(superFunc.prototype);
+
+
+            //此时的p是函数F的实例，但是根据原型链继承的方式，
+            //F.prototype与superFunc.prototype在一个链上，所以F与superFunc是有继承关系的
+            //
+            //定义：constructor方法在默认情况下是指向类的构造函数的
+            //此时p.constructor指向的构造函数是F();
+            //修正因为重写子类原型导致子类的constructor属性被修改；
+            p.constructor = subFunc;  //现在修改父类的构造函数属性指向子类的构造函数
+            //此处明显是类式继承
+            subFunc.prototype = p;
+        }
+
+        var simple = function () {
+            this.show = function (text) {
+                console.log(text);
+            }
+        }
+
+        var a = new simple();
+
+        a.show("123");
+        var b = new a.constructor();   //constructor函数在默认情况下是指向类的构造函数的
+        b.show("456");
+
+        console.log(simple.prototype == a.__proto__); //类的原型与对象的隐式原型链是完全相等的
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

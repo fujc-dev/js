@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    var checkObj = function () {
+        this.checkName = function () {
+                console.log("exec：checkName");
+        };
+        this.checkEmail = function () {
+
+        };
+    }
+
+    var _check = new checkObj();
+    _check.checkName();
+</script>

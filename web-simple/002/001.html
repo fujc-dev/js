@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>001</title>
+    <script type="text/javascript">
+
+        var BaseClass = function (name) {
+            this.getName = function () {
+                console.log(name)
+            }
+        }
+
+        var AClass = function (name) {
+            if (!(this instanceof AClass)) {
+                return new AClass(name);
+            }
+            BaseClass.call(this, name);
+        }
+
+        var BClass = function () {
+            BaseClass.call(this, name);
+        }
+
+        var CClass = function () {
+            BaseClass.call(this, name);
+        }
+
+
+        var ServerFactory = function () {
+
+
+        }
+
+        ServerFactory.getService = function (config) {
+            var _config = config || {state: "AClass", name: undefined};
+            var instance = undefined;
+            switch (_config.state) {
+                case "AClass":
+                    instance = new AClass(_config.name);
+                    break;
+                case "BClass":
+                    instance = new BClass(_config.name);
+                    break;
+                case "CClass":
+                    instance = new CClass(_config.name);
+                    break;
+            }
+            return instance;
+        }
+        var instance = ServerFactory.getService({state: "AClass", name: "李四"})
+        console.log("")
+    </script>
+</head>
+<body>
+
+</body>
+</html>

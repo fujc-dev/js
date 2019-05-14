@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数继承</title>
+    <script type="text/javascript">
+
+        function SuperClass(id) {
+            this.id = id;
+            this.books = ["1", "2", "3"];
+            this.name = "张三";
+        }
+
+        /**
+         * 获取当前书籍信息
+         * @param filter 过滤条件
+         */
+        SuperClass.prototype.showBooks = function (filter) {
+            return this.books;
+        }
+        /**
+         * 显示名称
+         * @returns {string}
+         */
+        SuperClass.prototype.showName = function () {
+            return this.name;
+        }
+
+        function SubClass(id) {
+            //SuperClass.call(this, id);
+            SuperClass.apply(this, [id])
+            //这条语句是构造函数继承的精华，由于call这个方法可以更改函数的作用环境，
+            //因此在此时的语义是：在SubClass这个函数中，SuperClass.call()，就是将子类中的变量在父类中执行一遍；
+            //
+            //
+
+        }
+        SubClass.prototype.showName = function () {
+            return this.name;
+        }
+        var subClass = new SubClass("10001");
+        //subClass.showName(); 由于构造函数继承没有涉及到原型继承，所有不能调用父类原型方法
+        console.info(subClass.showName());
+        console.info(subClass.name);
+
+
+        /**
+         * 从类式继承与构造函数继承分析
+         * 类式继承： 在子类的原型上赋值一个父类发实例，但是原型继承在使用引用类型属性事，会造成属性与其他子类共有；
+         * 构造函数继承：将子类的变量在父类执行一次；不能访问原型的方法与属性
+         * 组合继承：完美解决引用属性共有，以及原型属性的访问，但是会执行两次构造函数
+         * 由此引入原型式继承
+         */
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
