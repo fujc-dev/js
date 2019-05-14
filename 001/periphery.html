@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>发现周边</title>
+    <link rel="stylesheet" href="./periphery/css/materialize.css">
+    <link rel="stylesheet" href="./periphery/css/periphery.css">
+
+</head>
+<body>
+<!-- header begin 44px-->
+<div class="header">
+    <div class="left-part"><i class="large material-icons"></i></div>
+    <div class="title">发现周边</div>
+    <div class="right-part"></div>
+</div>
+<!-- header end -->
+
+<div class="container-body">
+    <div class="banner">
+        <!-- serch begin -->
+        <div class="search">
+            <div class="search-wrapper card">
+                <input type="text" class="context" placeholder="请输入关键字搜索项目">
+                <i id="search" class="material-icons">search</i>
+                <div class="search-results"></div>
+            </div>
+        </div>
+        <!-- serch end-->
+    </div>
+    <div class="navigation">
+        <ul class="tabs">
+            <li class="tab ng-general" option="i-xm"><a href="#navigation1" class="active">
+                <i class="i-xm"></i>
+                <span>项目</span>
+            </a>
+            </li>
+            <li class="tab ng-general" option="i-xm"><a href="#navigation2" class="">
+                <i class="i-sb"></i> <span>设备</span>
+            </a>
+            </li>
+            <li class="tab ng-general" option="i-wt"><a href="#navigation3" class="">
+                <i class="i-wt"></i> <span>问题</span>
+            </a>
+            </li>
+            <li class="tab ng-general" option="i-jk"><a href="#navigation4" class="">
+                <i class="i-jk"></i> <span>监控</span>
+            </a>
+            </li>
+            <li class="tab ng-general" option="i-jg"><a href="#navigation5" class="">
+                <i class="i-jg"></i> <span>机构</span>
+            </a>
+            </li>
+        </ul>
+        <div class="periphery">
+            <div id="navigation1" class="col s12 ">
+                <div class="xm-container">
+                    <a href="javascript:void(0);" class="btn active">中国中铁</a>
+                    <a href="javascript:void(0);" class="btn">中铁一局</a>
+                    <a href="javascript:void(0);" class="btn">中铁二局</a>
+                    <a href="javascript:void(0);" class="btn">中铁三局</a>
+                    <a href="javascript:void(0);" class="btn">中铁四局</a>
+                    <a href="javascript:void(0);" class="btn">中铁五局</a>
+                    <a href="javascript:void(0);" class="btn">中铁六局</a>
+                    <a href="javascript:void(0);" class="btn">中铁七局</a>
+                    <a href="javascript:void(0);" class="btn">中铁八局</a>
+                    <a href="javascript:void(0);" class="btn">中铁九局</a>
+                    <a href="javascript:void(0);" class="btn">中铁十局</a>
+                    <a href="javascript:void(0);" class="btn">电气化局</a>
+                    <a href="javascript:void(0);" class="btn">建工集团</a>
+                    <a href="javascript:void(0);" class="btn">隧道集团</a>
+                    <a href="javascript:void(0);" class="btn">武汉电气化局</a>
+                    <a href="javascript:void(0);" class="btn">中铁北京局</a>
+                    <a href="javascript:void(0);" class="btn">中铁广州局</a>
+                    <a href="javascript:void(0);" class="btn">上海局</a>
+                    <a href="javascript:void(0);" class="btn">大桥局</a>
+                </div>
+                <!-- poject periphery begin -->
+                <div class="xm-nearby">
+                    <ul class="tabs">
+                        <li class="tab" class="active">
+                            <a href="#periphery1">附近项目</a>
+                        </li>
+                        <li class="tab">
+                            <a href="#periphery2">常用项目</a>
+                        </li>
+                    </ul>
+                    <hr/>
+                    <div id="periphery1" class="col s12 ">
+                        <div class="periphery1-nodata"></div>
+                        <a href="javascript:void(0);" class="btn">平舒铁路芹泉改造项目</a>
+                        <a href="javascript:void(0);" class="btn">新建郑州至万州铁路重庆段ZWCQZQ-4标</a>
+                        <a href="javascript:void(0);" class="btn">中南仁寿新悦府项目（75亩）总承包工程</a>
+                        <a href="javascript:void(0);" class="btn">新建丽江至香格里拉铁路站前工程</a>
+                        <a href="javascript:void(0);" class="btn">金堂县家珍大道上跨达成铁路立交桥及引桥工程</a>
+                    </div>
+                    <div id="periphery2" class="col s12" style="display: none;">
+                        <div class="periphery2-nodata"></div>
+                    </div>
+                </div>
+                <!-- poject periphery end-->
+            </div>
+            <div id="navigation2" class="col s12" style="display: none;">
+                <div class="sb-container">
+                    <a href="javascript:void(0);" class="btn active">盾构机</a>
+                </div>
+            </div>
+            <div id="navigation3" class="col s12" style="display: none;"><p>Test 3</p></div>
+            <div id="navigation4" class="col s12 " style="display: none;"><p>Test 4</p></div>
+            <div id="navigation5" class="col s12 " style="display: none;"><p>Test 4</p></div>
+            <div class="viewer-container">
+                <div class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="periphery/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="periphery/js/materialize.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //初始化影藏遮罩
+        $(".viewer-container").hide();
+        //绑定tabs标签切换卡
+        $(".tabs").tabs();
+        //
+        $(".navigation .tabs .tab.ng-general").bind("click",function () {
+            console.log($(this).attr("option"));
+        });
+        //绑定搜索
+        $(".material-icons#search").bind("click", function () {
+            //判断搜索是否包含内容
+            $(".viewer-container").show();
+            window.setTimeout(function () {
+                $(".viewer-container").hide();
+            }, 2000);
+        });
+    });
+
+</script>
