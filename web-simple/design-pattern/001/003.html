@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理解类、对象、实例、原型链以及继承</title>
+</head>
+<body>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    /*
+     *  理解类、对象、实例、原型链以及继承
+     *
+     * */
+
+
+    /**
+     * 声明父类
+     * @constructor SuperClass
+     */
+    function SuperClass() {
+        this.superValue = "我是SuperClass父类的属性'superValue'";
+    }
+    SuperClass.prototype.getSuperValue = function () {
+        return this.superValue;
+    }
+
+    /**
+     * 声明子类
+     * @constructor
+     */
+    function SubClass() {
+        this.subValue = "我是SubClass子类的属性'subValue'"
+    }
+
+    /*
+     * 为什么使用继承？为什么使用面向对象编程？什么是类？
+     * 类：对一类事物的行为和属性的抽象；人类，禽类(家禽类，飞禽类)，哺乳动物类等等有相同行为和属性的事物进行抽象；
+     * OOP：面向对象编程；
+     * 为什么使用面向对象编程：直白一点就是写更少的代码做更多的事情，另外就是提升代码的可维护性和可读性；
+     * 当然重要的面向对象的是设计而不是编程语言，语言仅仅我们理解设计和实现设计的一种方式；
+     */
+    var _subClass = new SubClass();
+    /*
+    *   到目前为止SuperClass类和SubClass没有建立继承关系，怎么使用类式继承的方式实现继承关系？
+    * */
+
+    //类式继承
+    SubClass.prototype = new SuperClass();
+    //为子类添加新属性和方法
+    SubClass.prototype.getSubValue = function () {
+        return this.subValue;
+    }
+
+    /*
+     *  在学习过程中，为了方便理解，我们将首字符大些的函数都称为类。让我们更方便、容易的理解对象，类，实例之间的关系；
+     *
+     *  类的原型对象：
+     *      类的原型对象的作用就是为类添加【共有】属性和方法，但是类不能直接访问这些属性和方法，必须通prototype属性进行访问，
+     *      我们创建类实例时，类实例除了会复制一份自身实例属性和方法外，还会包含一个影藏的属性__proto__，
+     *      这个属性指向的是类的prototype属性，
+     *      并且prototype属性的constructor属性指向的是当前类对象，这样子就构成了类的原型链；
+     *      不管我们是修改prototype的值还是constructor所指向的类的对象，都会影响原型链，如果不能一一对应，都会破坏类的完整性；
+     *
+     *  为什么这么写就实现了继承呢？
+     *
+     *  1、在前面的原型链中我们使用checkObj.prtotype = {};这种方式对函数进行封装，使得checkObj对象包含我们所需要的属性和方法；
+     *  2、var _superClass = new SuperClass();，所得到就是一个对象，我们剔除里面的属性和方法，是不是就是一个{}对象；
+     *  3、由此简化，我们就可以看出类式继承其实我们很早就用过，只是一直不知道而已；
+     *  4、因为javascript是没有继承这些个花里胡哨的东西的，这些概念都是模拟的，现在我们来还原这个SubClass类的原型链；
+     *          1.SubClass类没有执行SubClass.prototype = new SuperClass();之前，他的原型链可以参见【类的原型对象】分析：
+     *            var _subClass = new SubClass();
+     *            _subClass.__proto__ === SubClass.prototype；
+     *            SubClass.prototype.constructor = function SubClass(){}
+     *            以上是在没有执行类式继承的原型链；
+     *            2.执行SubClass.prototype = new SuperClass()后，他的原型链就变成如下：
+     *            var _subClass = new SubClass();
+     *             _subClass.__proto__ === SuperClass.prototype；
+     *           SuperClass.prototype.constructor = function SuperClass(){}
+     *           以上是在执行类式继承后的原型链；
+     *
+     *   当一个类是否完成了对类的继承，我们可以使用instanceof来检测
+     *
+     *   综上所述：类式继承通过修改类的原型指向的对象实例来实现对类的继承。
+     *
+     * */
+    var _superClass = new SuperClass();
+    console.log(_superClass);
+    var _subClass = new SubClass();
+
+    console.log(_subClass.getSuperValue());
+    console.log(_subClass.getSubValue());
+
+    //instanceof：用来检测某个实例是不是某个类的实例
+
+    console.log(_subClass instanceof SuperClass);
+    console.log(_subClass instanceof SubClass);
+
+    /*
+     * 实现继承的目的就是维持原型链的完整，
+     * 不管是后续我们提到的构造函数继承，
+     * 组合式继承，原型式继承，寄生式继承，
+     * 组合寄生式继承都是为了满足参数和原型链的完美转移(对象关系的转换)；
+     *
+     * 组合式继承，原型式继承，寄生式继承，组合寄生式继承
+     * 都是满足参数和原型链的完美转移而衍生出来的补丁，
+     * 并正确的演绎出继承实际效果，
+     * 在实际项目中，使用哪种方式实现对象关系的转换，
+     * 根据实际业务场景来确定，选择最优者就可以；
+     * */
+
+
+</script>

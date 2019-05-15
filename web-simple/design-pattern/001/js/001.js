@@ -61,29 +61,30 @@ var checkObj = {
 }
 //----------------------------------v4.0----------------------------------
 // 这种写法还有另外一种叫法，静态函数
-var checkObj =function () {}
+var checkObj = function () {
+}
 
-checkObj.checkName =function () {
+checkObj.checkName = function () {
 
 }
-checkObj.checkEmail =function () {
+checkObj.checkEmail = function () {
 
 }
-checkObj.checkPassword =function () {
+checkObj.checkPassword = function () {
 
 }
 
 //----------------------------------v5.0----------------------------------
 
-var checkObj =function () {
+var checkObj = function () {
     var _o = new Object();
-    _o.checkName =function () {
+    _o.checkName = function () {
 
     }
-    _o.checkEmail =function () {
+    _o.checkEmail = function () {
 
     }
-    _o.checkPassword =function () {
+    _o.checkPassword = function () {
 
     }
     return _o;
@@ -91,3 +92,27 @@ var checkObj =function () {
 
 var _o = new checkObj();
 _o.checkName();
+
+
+//----------------------------------v6.0----------------------------------
+
+var checkObj = function () {
+
+}
+
+checkObj.prototype = {
+    checkName: function (name) {
+
+    },
+    checkEmail: function (email) {
+
+    },
+    checkPassword: function (password) {
+
+    }
+};
+
+//通过原型链实现对函数的创建和封装
+
+
+//链式添加...

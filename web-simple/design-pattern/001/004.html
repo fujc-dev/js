@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数式继承</title>
+</head>
+<body>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var SuperClass = function (id, name) {
+        console.log(this);
+        this.id = id;
+        //值类型共有属性
+        this.name = name;
+        //引用类型共有属性
+        this.books = ["javascript高级程序设计", "javascript设计模式", "node.js 高级编程"];
+        //
+    }
+
+    //声明一个静态共有方法
+    SuperClass.prototype.getName = function () {
+        return this.name;
+    }
+
+    var SubClass = function (id, name) {
+        SuperClass.call(this, id, name);
+    }
+
+    /**
+     *  在003.html中我们实现了类式继承，现在重新复习一下
+     */
+
+    //    SubClass.prototype = new SuperClass(10001, "fjc");
+    //    var _subClass = new SuperClass(10001, "fjc")
+    //    var _subClass2 = new SubClass(10002, 'zhangsan');
+    //    console.log(_subClass.getName());
+    //    console.log(_subClass2.getName());
+
+    /*
+     * 类式继承最明显是的无法继承参数传递，为了满足这个参数传递，我们使用改变函数作用域的方式实现继承
+     * 我们在SubClass函数的内部添加一行代码SuperClass.call(SubClass, id, name);
+     * 这一句代码的作用就是将SuperClass的执行向下文修改为SubClass的执行上下文
+     *
+     * 通过打印结果我们可以看到this的值的变化：
+     * */
+
+    var _super = new SuperClass(10001, "fjc");
+    var _sub = new SubClass(10002, 'zhangsan');
+    //执行结果参见：./images/DP004-1.png
+
+    //call和apply
+
+    //用于方法和对象的解耦，一般用不到，不过很多市面上的框架里面很常见，
+    //为了更好的学习和使用这两个方法，可以阅读一些框架源码jQuery等
+
+    /**
+     * call和apply这两个方法，有点模版方法的意思，
+     */
+
+    /**
+     * 公共服务
+     * @constructor
+     */
+    var CommonService = function () {
+
+        console.log(this);
+        this.Add = function () {
+            console.log(this.price);
+        }
+
+    }
+
+    //
+    var _o = [
+        {id: 10001, price: 18.00, name: ''},
+        {id: 10002, price: 28.00, name: ''},
+        {id: 10003, price: 17.40, name: ''}
+    ];
+
+    CommonService.call(_o);
+    var _commonSer = new  CommonService();
+    _commonSer.Add();
+
+</script>

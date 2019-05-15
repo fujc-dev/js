@@ -11,16 +11,21 @@
 
 
 <script type="text/javascript">
-
-    var checkObj = function () {
-        this.checkName = function () {
-                console.log("exec：checkName");
-        };
-        this.checkEmail = function () {
-
-        };
+    var Book = function (id, bookname, price) {
+        this.id = id;
+        this.bookname = bookname;
+        this.price = price;
+        //this：内部自带的一个变量，用于指向当前的对象；
     }
 
-    var _check = new checkObj();
-    _check.checkName();
+    var _book = new Book();
+    /*
+     *  _book包含一个__proto__属性，这个属性指向的是Book对象的prototype属性；
+     *  Book对象的prototype属性中有一个属性constructor，这个属性又指向的是Book对象；
+     *  这样子形成一个原型链。
+     *
+     */
+
+    console.log(Book);
+
 </script>
