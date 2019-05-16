@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型式继承/寄生式继承</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    /**
+     * 原型式继承
+     * @param o
+     * @returns {F}
+     */
+    function inheritObject(o) {
+        //声明一个过渡函数对象
+        function F() {
+        }
+
+        //过渡对象的原型继承传递进来的对象，那么根据类式继承的定义，这个过渡对象就继承了传递进来的对象
+        F.prototype = o;
+        //返回过渡对象的实例，该实例的原型继承了传递进来的对象(我们称之为父对象)；
+        return new F();
+    }
+
+    //
+    var book = {"name": "javascript高级程序设计", "alikebook": ["Python 设计模式", "Java从精通到翻车"]};
+
+    var _newBook1 = inheritObject(book);
+    _newBook1.name = "HTML5+CSS3权威指南"
+    _newBook1.alikebook.push("大型网站技术架构之核心原理与案例分析");
+    var _newBook2 = inheritObject(book);
+    _newBook2.name = "ASP.NET MVC4权威指南"
+    _newBook2.alikebook.push("C#本质论 第6版");
+    console.log(_newBook1.name);
+    console.log(_newBook1.alikebook);
+
+    console.log(_newBook1.name);
+    console.log(_newBook1.alikebook);
+
+    console.log(book.name);
+    console.log(book.alikebook);
+
+    /**
+     * 既然是类式继承，那么类式继承的缺点那肯定是妥妥的被遗留下来了，修改原型对象时，值类型被复制，引用类型被公用；
+     */
+
+
+    function createBook(obj) {
+        var _o = inheritObject(obj);  //这里个new没看懂作用是什么？
+        _o.getName = function () {
+            console.log(this.name);
+        }
+        console.log(_o);
+        return _o;
+    }
+    var _o = createBook(book);
+    _o.name = "HTML5+CSS3权威指南123"
+    //_o.alikebook.push("大型网站技术架构之核心原理与案例分析");
+    _o.getName();
+    console.log(_o.alikebook);
+</script>

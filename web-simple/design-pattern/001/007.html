@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合寄生式继承</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    /**
+     * 声明父类，以及抽象该父类包含的公共属性和方法
+     * @param name
+     * @constructor
+     */
+    function SuperClass(name) {
+        this.name = name;
+        this.books = ["A", "B", "C"];
+    }
+
+    SuperClass.prototype.getName = function () {
+        console.log(this.name);
+    }
+
+
+    /**
+     * 声明子类
+     * @param name 名称
+     * @param time 时间
+     * @constructor
+     */
+    function SubClass(name, time) {
+        SuperClass.call(this, name); //构造函数式继承父类的共有属性和共有方法
+        this.time = time;
+    }
+
+
+    //组合寄生式继承：原型链与构造函数继承两种整合在一起
+
+    function 组合寄生式继承(父类对象, 子类对象) {
+
+        //1、为了减少内存的消耗，先让_过渡对象承父类对象
+        function F() {
+        }
+        F.prototype = 父类对象.prototype;
+        var _F = new F();
+        _F.constructor = 子类对象;
+        子类对象.prototype = F.prototype;
+    }
+
+
+    组合寄生式继承(SuperClass, SubClass);
+    //为子类添加新属性和方法
+    SubClass.prototype.getTime = function () {
+        console.log(this.time);
+    }
+    var _instance1 = new SubClass("js book", 2014);
+    var _instance2 = new SubClass("css book", 2015);
+
+    _instance1.books.push("D");
+    console.log(_instance1.books);
+    console.log(_instance2.books);
+    _instance2.getName();
+    _instance2.getTime();
+</script>

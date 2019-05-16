@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合式继承</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    /**
+     * 由类式继承和构造函数继承衍生出来另一个版本：组合式继承
+     */
+
+
+    /**
+     * 声明父类，以及抽象该父类包含的公共属性和方法
+     * @param name
+     * @constructor
+     */
+    function SuperClass(name) {
+        this.name = name;
+        this.books = [];
+    }
+
+    SuperClass.prototype.getName = function () {
+        console.log(this.name);
+    }
+
+    /**
+     * 声明子类
+     * @param name 名称
+     * @param time 时间
+     * @constructor
+     */
+    function SubClass(name, time) {
+        SuperClass.call(this, name); //构造函数式继承父类的共有属性和共有方法
+        this.time = time;
+    }
+
+    //类式继承父类，子类型的原型继承(等于)父类，
+    //如果要实现子类对父类的原型继承并且子类也包含自己的原型方法和属性，继承一定要写在子类自己的原型属性和方法之前
+    SubClass.prototype = new SuperClass();
+    SubClass.prototype.getTime = function () {
+        console.log(this.time);
+    }
+
+</script>

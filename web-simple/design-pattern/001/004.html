@@ -60,28 +60,10 @@
      * call和apply这两个方法，有点模版方法的意思，
      */
 
-    /**
-     * 公共服务
-     * @constructor
-     */
-    var CommonService = function () {
 
-        console.log(this);
-        this.Add = function () {
-            console.log(this.price);
-        }
 
-    }
 
-    //
-    var _o = [
-        {id: 10001, price: 18.00, name: ''},
-        {id: 10002, price: 28.00, name: ''},
-        {id: 10003, price: 17.40, name: ''}
-    ];
 
-    CommonService.call(_o);
-    var _commonSer = new  CommonService();
-    _commonSer.Add();
+
 
 </script>
